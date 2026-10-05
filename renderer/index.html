@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Zumi</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="stage" class="mood-neutral">
+      <div id="vcdot" class="vcdot hidden" title="Live voice is ON (Ctrl+Alt+Z to turn off)"></div>
+      <div id="ground" class="ground" aria-hidden="true"></div>
+      <div id="progressBar" class="progressbar hidden" title="Live task progress"><i id="progressFill"></i></div>
+
+      <div id="bubble" class="bubble hidden">
+        <span class="bubble-dot"></span>
+        <span id="bubbleText"></span>
+      </div>
+
+      <div id="chatwrap" class="chatwrap hidden">
+        <div class="chips">
+          <button class="chip" data-cmd="timer">⏰ Timer</button>
+          <button class="chip" data-cmd="pomodoro">🍅 Pomodoro</button>
+          <button class="chip" data-cmd="note">📝 Note</button>
+          <button class="chip" data-cmd="shot">📸 Shot</button>
+          <button class="chip" data-cmd="stats">💻 Stats</button>
+          <button class="chip" data-cmd="joke">😄 Joke</button>
+        </div>
+        <div class="chatbar">
+          <input id="chatInput" type="text" autocomplete="off" placeholder="Type here, or Ctrl+Alt+Z for live hands-free voice…" />
+          <button id="micBtn" class="icon" title="Speak">🎤</button>
+          <button id="sendBtn" class="icon send" title="Send">➤</button>
+        </div>
+      </div>
+
+      <div id="char" class="char" title="Drag to move · right-click for menu">
+        <svg viewBox="0 0 220 230" width="100%" height="100%" aria-label="Zumi">
+          <defs>
+            <radialGradient id="bodyG" cx="42%" cy="28%" r="82%">
+              <stop offset="0%" stop-color="#c4fbe8" />
+              <stop offset="42%" stop-color="#67ddb7" />
+              <stop offset="100%" stop-color="#2ba586" />
+            </radialGradient>
+            <radialGradient id="bellyG" cx="50%" cy="32%" r="78%">
+              <stop offset="0%" stop-color="#ffffff" />
+              <stop offset="100%" stop-color="#cdf6e9" />
+            </radialGradient>
+            <linearGradient id="earG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#7ce6c4" />
+              <stop offset="100%" stop-color="#38bd99" />
+            </linearGradient>
+            <radialGradient id="eyeG" cx="42%" cy="34%" r="80%">
+              <stop offset="0%" stop-color="#3c5566" />
+              <stop offset="100%" stop-color="#16232c" />
+            </radialGradient>
+            <radialGradient id="blush" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#ff93b3" stop-opacity="0.85" />
+              <stop offset="100%" stop-color="#ff93b3" stop-opacity="0" />
+            </radialGradient>
+          </defs>
+
+          <g id="zumi" class="mood-neutral">
+            <ellipse cx="110" cy="212" rx="60" ry="9" fill="#000" opacity="0.16" />
+
+            <ellipse cx="82" cy="198" rx="19" ry="13" fill="#34b795" />
+            <ellipse cx="138" cy="198" rx="19" ry="13" fill="#34b795" />
+
+            <ellipse cx="36" cy="150" rx="13" ry="22" fill="#4ecba6" transform="rotate(-20 36 150)" />
+            <ellipse cx="184" cy="150" rx="13" ry="22" fill="#4ecba6" transform="rotate(20 184 150)" />
+
+            <g id="earL">
+              <path d="M64 78 C47 50 38 22 46 13 C56 4 80 30 95 52 C81 61 70 69 64 78 Z" fill="url(#earG)" />
+              <path d="M68 70 C56 49 50 28 53 22 C59 19 75 40 86 54 C77 61 71 65 68 70 Z" fill="#ffb6c9" opacity="0.92" />
+            </g>
+            <g id="earR">
+              <path d="M156 78 C173 50 182 22 174 13 C164 4 140 30 125 52 C139 61 150 69 156 78 Z" fill="url(#earG)" />
+              <path d="M152 70 C164 49 170 28 167 22 C161 19 145 40 134 54 C143 61 149 65 152 70 Z" fill="#ffb6c9" opacity="0.92" />
+            </g>
+
+            <ellipse cx="110" cy="130" rx="74" ry="68" fill="url(#bodyG)" />
+            <ellipse cx="110" cy="150" rx="45" ry="40" fill="url(#bellyG)" opacity="0.95" />
+
+            <ellipse cx="70" cy="146" rx="15" ry="10" fill="url(#blush)" />
+            <ellipse cx="150" cy="146" rx="15" ry="10" fill="url(#blush)" />
+
+            <g id="eyesNormal" class="eyes">
+              <ellipse cx="88" cy="120" rx="13.5" ry="17" fill="url(#eyeG)" />
+              <ellipse cx="132" cy="120" rx="13.5" ry="17" fill="url(#eyeG)" />
+              <circle cx="92.5" cy="113" r="5" fill="#fff" />
+              <circle cx="136.5" cy="113" r="5" fill="#fff" />
+              <circle cx="84" cy="125" r="2.2" fill="#fff" opacity="0.7" />
+              <circle cx="128" cy="125" r="2.2" fill="#fff" opacity="0.7" />
+            </g>
+            <g id="eyesHappy" class="eyes">
+              <path d="M76 124 Q88 108 100 124" stroke="#1b2a33" stroke-width="5" fill="none" stroke-linecap="round" />
+              <path d="M120 124 Q132 108 144 124" stroke="#1b2a33" stroke-width="5" fill="none" stroke-linecap="round" />
+            </g>
+            <g id="eyesSad" class="eyes">
+              <ellipse cx="88" cy="124" rx="12" ry="13" fill="url(#eyeG)" />
+              <ellipse cx="132" cy="124" rx="12" ry="13" fill="url(#eyeG)" />
+              <path d="M74 108 Q88 100 100 108" stroke="#1b2a33" stroke-width="4" fill="none" stroke-linecap="round" />
+              <path d="M120 108 Q132 100 146 108" stroke="#1b2a33" stroke-width="4" fill="none" stroke-linecap="round" />
+              <circle cx="92" cy="118" r="3.4" fill="#fff" opacity="0.85" />
+            </g>
+            <g id="eyesSleepy" class="eyes">
+              <path d="M76 122 Q88 130 100 122" stroke="#1b2a33" stroke-width="4.5" fill="none" stroke-linecap="round" />
+              <path d="M120 122 Q132 130 144 122" stroke="#1b2a33" stroke-width="4.5" fill="none" stroke-linecap="round" />
+            </g>
+            <g id="eyesLove" class="eyes">
+              <path d="M88 112 C82 104 68 106 68 118 C68 128 88 138 88 138 C88 138 108 128 108 118 C108 106 94 104 88 112 Z" fill="#ff5c8a" />
+              <path d="M132 112 C126 104 112 106 112 118 C112 128 132 138 132 138 C132 138 152 128 152 118 C152 106 138 104 132 112 Z" fill="#ff5c8a" />
+            </g>
+            <g id="shades" class="eyes">
+              <rect x="66" y="108" width="38" height="26" rx="9" fill="#141b21" />
+              <rect x="116" y="108" width="38" height="26" rx="9" fill="#141b21" />
+              <rect x="104" y="116" width="12" height="5" rx="2.5" fill="#141b21" />
+              <path d="M74 112 L86 128" stroke="#ffffff" stroke-opacity="0.55" stroke-width="4" stroke-linecap="round" />
+              <path d="M124 112 L136 128" stroke="#ffffff" stroke-opacity="0.55" stroke-width="4" stroke-linecap="round" />
+            </g>
+
+            <path d="M110 132 l-5 5 l5 4 l5 -4 z" fill="#2aa587" />
+
+            <path id="mouthSmile" class="mouth" d="M98 148 Q110 158 122 148" stroke="#1b2a33" stroke-width="3.6" fill="none" stroke-linecap="round" />
+            <path id="mouthWide" class="mouth" d="M90 144 Q110 166 130 144 Q110 152 90 144 Z" fill="#1b2a33" />
+            <path id="mouthFrown" class="mouth" d="M98 156 Q110 146 122 156" stroke="#1b2a33" stroke-width="3.6" fill="none" stroke-linecap="round" />
+            <ellipse id="mouthOpen" cx="110" cy="152" rx="8" ry="9.5" fill="#1b2a33" />
+
+            <ellipse id="tear" cx="76" cy="140" rx="4" ry="6" fill="#7ecbff" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- first-run setup -->
+      <div id="setup" class="setup hidden">
+        <div class="setup-card">
+          <div class="setup-head">⚙ <b>Zumi</b> Setup</div>
+          <p class="setup-sub">One-time setup — everything is configured here. After this, nothing changes.</p>
+
+          <p class="sec">🐾 Buddy</p>
+          <label>Name<input id="u_name" type="text" placeholder="Zumi" /></label>
+          <label>Size <input id="u_size" type="range" min="150" max="320" step="10" value="200" /></label>
+
+          <p class="sec">🤖 AI &amp; Chat</p>
+          <label>DeepSeek API Key<input id="u_key" type="password" placeholder="sk-..." /></label>
+          <div class="grid2">
+            <label>Model<input id="u_model" type="text" placeholder="deepseek-chat" /></label>
+            <label>Base URL<input id="u_base" type="text" placeholder="https://api.deepseek.com" /></label>
+          </div>
+
+          <p class="sec">🔊 Voice</p>
+          <div class="grid2">
+            <label class="row"><span>Speak</span><input id="u_voice" type="checkbox" /></label>
+            <label class="row"><span>Voice control</span><input id="u_voiceCtl" type="checkbox" /></label>
+          </div>
+
+          <button id="startBtn" class="btn start">Start Zumi ✨</button>
+          <p class="hint">After setup: <b>Ctrl+Alt+Z</b> voice ON/OFF — hands-free, keep talking · drag Zumi to move · right-click → quit</p>
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>

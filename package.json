@@ -1,0 +1,16 @@
+{
+  "name": "zumi-desktop-buddy",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Zumi — a tiny desktop buddy that talks to you while you work and does small tasks.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --enable-logging"
+  },
+  "author": "arpitsingh404",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^31.0.0"
+  }
+}

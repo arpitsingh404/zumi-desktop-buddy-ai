@@ -1,0 +1,28 @@
+# deps
+node_modules/
+# speech models (large - download separately)
+models/
+# build output
+dist/
+out/
+# logs and run artifacts
+npm-debug.log*
+*.log
+*.err
+# python (stt worker helpers)
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+# secrets: the DeepSeek key lives in %APPDATA%\zumi-desktop-buddy\zumi.json,
+# outside this repo. Never commit one here.
+.env
+.env.*
+*.env
+!*.env.example
+# editor / os
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
