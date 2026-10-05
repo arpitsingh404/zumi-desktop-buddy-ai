@@ -1,5 +1,9 @@
 # Zumi - Desktop Buddy and Autonomous PC Agent
 
+<p align="center">
+  <img src="screenshots/zumi-mascot.png" alt="Zumi, a small green rabbit companion character" width="200">
+</p>
+
 Zumi is a tiny desktop companion for Windows that sits on your screen, talks to you,
 keeps local memory **and actually operates your PC**. Ask it to open an application,
 run a real task inside it, and close it again - Zumi performs the steps itself, then
@@ -14,6 +18,7 @@ Written and maintained by **Arpit Singh**. Licensed under [MIT](LICENSE).
 
 ## Table of contents
 
+- [Screenshots](#screenshots)
 - [What makes it different](#what-makes-it-different)
 - [Controls](#controls)
 - [The character](#the-character)
@@ -36,6 +41,43 @@ Written and maintained by **Arpit Singh**. Licensed under [MIT](LICENSE).
 - [Known limits](#known-limits)
 - [Troubleshooting](#troubleshooting)
 - [License](#license)
+
+---
+
+## Screenshots
+
+**Listening hands-free on the desktop.** One `Ctrl+Alt+Z` press keeps the microphone
+open - the red LIVE VOICE indicator and the reasoning bubble show Zumi working through
+what you just said:
+
+<p align="center">
+  <img src="screenshots/zumi-desktop-live-voice.png" width="760"
+       alt="Zumi on the Windows desktop with a LIVE VOICE indicator and a speech bubble reading: Thinking, breaking a request into safe steps">
+</p>
+
+**Thinking before it touches anything.** The planner breaks a request into verified
+steps and shows its reasoning in the bubble:
+
+<p align="center">
+  <img src="screenshots/zumi-thinking.png" width="760"
+       alt="Zumi floating over File Explorer with a speech bubble showing its reasoning about a request">
+</p>
+
+**Running a real task.** The bubble reports the live engine step - here Zumi is halfway
+through a two-step task at `open_app`:
+
+<p align="center">
+  <img src="screenshots/zumi-task-open-app.png" width="760"
+       alt="Zumi beside a browser window with a status bubble reading 1 of 2, open_app">
+</p>
+
+**Staying out of the way.** Zumi floats above whatever you are using and never covers
+the controls you need:
+
+<p align="center">
+  <img src="screenshots/zumi-over-app.png" width="760"
+       alt="Zumi floating over a web page while it carries out a task">
+</p>
 
 ---
 
@@ -306,8 +348,8 @@ which is far above what GitHub accepts for a single file.
 ## Install and run
 
 ```powershell
-git clone https://github.com/arpitsingh404/zumi-desktop-buddy.git
-cd zumi-desktop-buddy
+git clone https://github.com/arpitsingh404/zumi-desktop-buddy-ai.git
+cd zumi-desktop-buddy-ai
 npm install        # first run also downloads the Electron binary
 npm start
 ```
