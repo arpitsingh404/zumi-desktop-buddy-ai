@@ -1,5 +1,9 @@
 # Zumi - Desktop Buddy and Autonomous PC Agent
 
+[![Windows 10/11](https://img.shields.io/badge/Windows-10%2F11-0078D6?logo=windows&logoColor=white)](#requirements)
+[![Electron](https://img.shields.io/badge/Electron-desktop-47848F?logo=electron&logoColor=white)](#install-and-run)
+[![License: MIT](https://img.shields.io/badge/license-MIT-2ea44f)](LICENSE)
+
 <p align="center">
   <img src="screenshots/zumi-mascot.png" alt="Zumi, a small green rabbit companion character" width="200">
 </p>
@@ -13,6 +17,8 @@ Everything - settings, memory, chat history, tasks and reports - stays on your o
 machine. There is no cloud account and no telemetry.
 
 Written and maintained by **Arpit Singh**. Licensed under [MIT](LICENSE).
+
+**Repository:** <https://github.com/arpitsingh404/zumi-desktop-buddy-ai>
 
 ---
 
@@ -394,7 +400,7 @@ Get it from <https://alphacephei.com/vosk/models> and unzip it into `models/`.
 ## Project structure
 
 ```
-DeskBuddy/
+zumi-desktop-buddy-ai/
 ├── main.js           # main process: window, IPC, LLM, planner, executor, batch, scheduler
 ├── preload.js        # contextBridge - the only surface exposed to the renderer
 ├── automation.js     # real PC actions: files, keyboard, mouse, window enum, PrintWindow, OCR
@@ -488,3 +494,6 @@ run uses fresh output filenames because nothing is ever deleted.
 [MIT](LICENSE) - Copyright (c) 2026 Arpit Singh.
 
 Free to use, modify and redistribute, provided the copyright notice is kept.
+
+- GitHub: [@arpitsingh404](https://github.com/arpitsingh404)
+- Repository: [zumi-desktop-buddy-ai](https://github.com/arpitsingh404/zumi-desktop-buddy-ai)
